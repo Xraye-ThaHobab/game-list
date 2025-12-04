@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <title>لیست بازی‌های فعلی کمیته سکس</title>
 
-<!-- فونت فارسی شیک و گیمینگ -->
 <link href="https://cdn.jsdelivr.net/npm/shabnam-font@5.0.1/dist/font-face.css" rel="stylesheet">
 
 <style>
@@ -17,7 +16,6 @@
     color: #e6e6e6;
   }
 
-  /* پس‌زمینه نئونی متحرک */
   body::before {
     content: "";
     position: fixed;
@@ -35,14 +33,12 @@
     to   { transform: translate(-50px, -50px); }
   }
 
-  /* گرید مرکزی */
   .container {
     max-width: 700px;
     margin: 100px auto 60px auto;
     padding: 20px;
   }
 
-  /* عنوان با افکت پالس نئونی */
   h1 {
     text-align: center;
     font-size: 36px;
@@ -56,7 +52,6 @@
     to   { text-shadow: 0 0 15px #00eaff, 0 0 40px #00eaff; }
   }
 
-  /* کادر شیشه‌ای */
   .glass-box {
     background: rgba(20, 20, 20, 0.4);
     backdrop-filter: blur(14px);
@@ -66,7 +61,6 @@
     border: 1px solid #00eaff44;
   }
 
-  /* سرچ */
   #search {
     width: 100%;
     padding: 14px;
@@ -89,7 +83,6 @@
     padding: 0;
   }
 
-  /* آیتم‌های نئونی */
   li {
     margin: 12px 0;
     padding: 14px 18px;
@@ -102,6 +95,8 @@
     box-shadow: 0 0 10px #000;
     transition: 0.25s ease;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
   }
 
   li:hover {
@@ -118,7 +113,6 @@
     box-shadow: 0 0 10px #00eaff;
   }
 
-  /* دکمه‌ها */
   .btns {
     display: flex;
     gap: 10px;
@@ -160,16 +154,16 @@
     <input id="search" placeholder="جستجو بین بازی‌ها..." onkeyup="filterList()">
 
     <ul id="gameList">
-      <li><span>Mount & Blade: Warband</span><div class="dot"></div></li>
-      <li><span>Rust</span><div class="dot"></div></li>
-      <li><span>Total War SHOGUN 2</span><div class="dot"></div></li>
-      <li><span>Sons Of The Forest</span><div class="dot"></div></li>
-      <li><span>Schedule I</span><div class="dot"></div></li>
-      <li><span>Crusader Kings III</span><div class="dot"></div></li>
-      <li><span>Stronghold Crusader: Definitive Edition</span><div class="dot"></div></li>
-      <li><span>PAYDAY 3</span><div class="dot"></div></li>
-      <li><span>No One Survived</span><div class="dot"></div></li>
-      <li><span>Road Food Simulator</span><div class="dot"></div></li>
+      <li onclick="openLink('https://gold-team.org/mount-blade-warband/')"><span>Mount & Blade: Warband</span><div class="dot"></div></li>
+      <li onclick="openLink('https://gold-team.org/rust-game/')"><span>Rust</span><div class="dot"></div></li>
+      <li onclick="openLink('https://gold-team.org/total-war-shogun-2/')"><span>Total War SHOGUN 2</span><div class="dot"></div></li>
+      <li onclick="openLink('https://gold-team.org/%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D8%A2%D9%86%D9%84%D8%A7%DB%8C%D9%86-%D8%A8%D8%A7%D8%B2%DB%8C-%DA%A9%D8%B1%D8%AF%D9%86-sons-of-the-forest/')"><span>Sons Of The Forest</span><div class="dot"></div></li>
+      <li onclick="openLink('https://gold-team.org/schedule-i/')"><span>Schedule I</span><div class="dot"></div></li>
+      <li onclick="openLink('https://gold-team.org/crusader-kings-iii/')"><span>Crusader Kings III</span><div class="dot"></div></li>
+      <li onclick="openLink('https://gold-team.org/stronghold-crusader-definitive-edition/')"><span>Stronghold Crusader: Definitive Edition</span><div class="dot"></div></li>
+      <li onclick="openLink('https://gold-team.org/payday-3/')"><span>PAYDAY 3</span><div class="dot"></div></li>
+      <li onclick="openLink('https://gold-team.org/no-one-survived-online/')"><span>No One Survived</span><div class="dot"></div></li>
+      <li onclick="openLink('https://gold-team.org/road-food-simulator/')"><span>Road Food Simulator</span><div class="dot"></div></li>
     </ul>
 
   </div>
@@ -182,14 +176,12 @@ function filterList() {
     li.style.display = li.innerText.toLowerCase().includes(val) ? "" : "none";
   });
 }
-
 function copyList() {
   let text = [...document.querySelectorAll("#gameList li span")]
              .map(e => e.innerText).join("\n");
   navigator.clipboard.writeText(text);
   alert("لیست کپی شد!");
 }
-
 function downloadList() {
   let text = [...document.querySelectorAll("#gameList li span")]
              .map(e => e.innerText).join("\n");
@@ -198,6 +190,9 @@ function downloadList() {
   a.href = URL.createObjectURL(file);
   a.download = "games.txt";
   a.click();
+}
+function openLink(url) {
+  window.open(url, "_blank");
 }
 </script>
 
