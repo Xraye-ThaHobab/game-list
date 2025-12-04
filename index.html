@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>لیست بازی‌های فعلی کمیته سکس</title>
+
+  <!-- فونت فارسی -->
+  <link href="https://cdn.jsdelivr.net/npm/vazirmatn@33.0.2/dist/font-face.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: #050505;
+      color: #e5e5e5;
+      font-family: 'Vazirmatn', sans-serif;
+      direction: rtl;
+      padding: 40px;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00eaff;
+      font-size: 34px;
+      text-shadow: 0 0 15px #00eaff;
+      margin-bottom: 25px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00eaff; }
+      to { text-shadow: 0 0 25px #00eaff; }
+    }
+
+    .container {
+      max-width: 650px;
+      margin: auto;
+    }
+
+    /* سرچ */
+    #search {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      background: #111;
+      color: #eee;
+      font-size: 18px;
+      outline: none;
+      margin-bottom: 20px;
+      border: 1px solid #1f1f1f;
+      transition: 0.2s;
+    }
+    #search:focus {
+      border-color: #00eaff;
+      box-shadow: 0 0 10px #00eaff66;
+    }
+
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      background: linear-gradient(135deg, #0e0e0e, #1c1c1c);
+      padding: 14px 18px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: 1px solid #222;
+      font-size: 19px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      letter-spacing: 0.3px;
+      box-shadow: 0 0 8px #000;
+      transition: 0.3s ease;
+    }
+
+    li:hover {
+      border-color: #00eaff;
+      box-shadow: 0 0 12px #00eaff55;
+      transform: translateY(-3px);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: #00eaff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00eaff;
+    }
+
+    /* دکمه‌ها */
+    .btns {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      flex: 1;
+      background: #0f0f0f;
+      color: #00eaff;
+      border: 1px solid #00eaff55;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 0 8px #000;
+    }
+    button:hover {
+      background: #00eaff22;
+      box-shadow: 0 0 10px #00eaff55;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>لیست بازی‌های فعلی کمیته سکس</h1>
+
+  <div class="container">
+
+    <!-- دکمه‌ها -->
+    <div class="btns">
+      <button onclick="copyList()">کپی لیست</button>
+      <button onclick="downloadList()">دانلود TXT</button>
+    </div>
+
+    <!-- سرچ -->
+    <input id="search" type="text" placeholder="جستجو بین بازی‌ها..." onkeyup="filterList()">
+
+    <!-- لیست بازی ها -->
+    <ul id="gameList">
+      <li><span>Mount & Blade: Warband</span><div class="dot"></div></li>
+      <li><span>Rust</span><div class="dot"></div></li>
+      <li><span>Total War SHOGUN 2</span><div class="dot"></div></li>
+      <li><span>Sons Of The Forest</span><div class="dot"></div></li>
+      <li><span>Schedule I</span><div class="dot"></div></li>
+      <li><span>Crusader Kings III</span><div class="dot"></div></li>
+      <li><span>Stronghold Crusader: Definitive Edition</span><div class="dot"></div></li>
+      <li><span>PAYDAY 3</span><div class="dot"></div></li>
+      <li><span>No One Survived</span><div class="dot"></div></li>
+      <li><span>Road Food Simulator</span><div class="dot"></div></li>
+    </ul>
+  </div>
+
+  <script>
+    function filterList() {
+      let input = document.getElementById("search").value.toLowerCase();
+      let items = document.querySelectorAll("#gameList li");
+
+      items.forEach(li => {
+        let text = li.innerText.toLowerCase();
+        li.style.display = text.includes(input) ? "" : "none";
+      });
+    }
+
+    function copyList() {
+      let items = [...document.querySelectorAll("#gameList li span")].map(x => x.innerText).join("\n");
+      navigator.clipboard.writeText(items);
+      alert("لیست کپی شد!");
+    }
+
+    function downloadList() {
+      let text = [...document.querySelectorAll("#gameList li span")].map(x => x.innerText).join("\n");
+      let file = new Blob([text], { type: 'text/plain' });
+      let a = document.createElement("a");
+      a.href = URL.createObjectURL(file);
+      a.download = "games.txt";
+      a.click();
+    }
+  </script>
+
+</body>
+</html>
